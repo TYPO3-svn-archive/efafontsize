@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for plugin &quot;tx_efafontsize_pi1&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="smaller">Decrease font size</label>
+			<label index="reset">Reset font size</label>
+			<label index="bigger">Increase font size</label>
+		</languageKey>
+	</data>
+</T3locallang>

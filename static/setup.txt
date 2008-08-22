@@ -1,0 +1,24 @@
+# Default setup for plugin
+#
+# $Id: setup.txt 3655 2008-01-11 13:17:59Z fsuter $
+
+plugin.tx_efafontsize_pi1 {
+	defaultFontSize = {$plugin.tx_efafontsize_pi1.defaultFontSize}
+	fontSizeIncrement = {$plugin.tx_efafontsize_pi1.fontSizeIncrement}
+	controlOrder = smaller,reset,bigger
+	smaller = 1
+	smaller {
+		insideHTML = IMAGE
+		insideHTML.file = EXT:efafontsize/res/icons/smaller.gif
+	}
+	reset = 1
+	reset {
+		insideHTML = IMAGE
+		insideHTML.file = EXT:efafontsize/res/icons/reset.gif
+	}
+	bigger = 1
+	bigger {
+		insideHTML = IMAGE
+		insideHTML.file = EXT:efafontsize/res/icons/bigger.gif
+	}
+}

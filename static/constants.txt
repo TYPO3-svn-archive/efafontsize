@@ -1,0 +1,7 @@
+plugin.tx_efafontsize_pi1 {
+
+# cat=plugin.tx_efafontsize_pi1//; type=int; label= Increment: Number (of percents) by which the size of the font must be increased or decreased each time a control is pressed
+	fontSizeIncrement = 10
+# cat=plugin.tx_efafontsize_pi1//; type=int; label= Default size: Default font size expressed as a percentage (but without units)
+	defaultFontSize = 100
+}

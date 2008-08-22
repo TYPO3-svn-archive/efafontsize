@@ -1,0 +1,1 @@
+This extension display font size controls using JavaScript. Please refer to the manual.
