@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007 Francois Suter (Cobweb) <support@cobweb.ch>
+*  (c) 2007-2009 Francois Suter (Cobweb) <typo3@cobweb.ch>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +30,7 @@ require_once(PATH_tslib.'class.tslib_pibase.php');
 /**
  * Plugin 'Dynamic Font Resizer' for the 'efafontsize' extension.
  *
- * @author	Francois Suter (Cobweb) <support@cobweb.ch>
+ * @author	Francois Suter (Cobweb) <typo3@cobweb.ch>
  * @package	TYPO3
  * @subpackage	tx_efafontsize
  */
