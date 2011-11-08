@@ -1,6 +1,7 @@
 2011-11-08 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Corrected wrong usage of local TS configuration which prevent override of labels, resolves #31005
+	* Slightly updated the manual and added a PDF version for convenience
 
 2009-02-15 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
