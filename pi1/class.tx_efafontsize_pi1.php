@@ -39,9 +39,8 @@ class tx_efafontsize_pi1 extends tslib_pibase {
 	var $scriptRelPath = 'pi1/class.tx_efafontsize_pi1.php';	// Path to this script relative to the extension dir.
 	var $extKey        = 'efafontsize';	// The extension key.
 	var $pi_checkCHash = true;
-	var $localconf; // Local TS configuration
 	var $sizes = array('smaller','reset','bigger'); // List of control keys
-	
+
 	/**
 	 * This is the main method of plugin
 	 * It writes the actual code for the font resizing controls
@@ -54,7 +53,7 @@ class tx_efafontsize_pi1 extends tslib_pibase {
 
 // Perform initalizations
 
-		$this->localconf = $conf;
+		$this->conf = $conf;
 		$initializationScript = '';
 		$controlsScript = '';
 
@@ -64,19 +63,19 @@ class tx_efafontsize_pi1 extends tslib_pibase {
 
 // Check that the configuration of the controls order indeed contains the 3 controls
 
-		$configurationOrder = t3lib_div::trimExplode(',', $this->localconf['controlOrder']);
+		$configurationOrder = t3lib_div::trimExplode(',', $this->conf['controlOrder']);
 		$difference = array_diff($this->sizes, $configurationOrder);
 		if (count($difference) > 0) { // If there's at least one difference, replace configuration with default array
-			$this->localconf['controlOrder'] = $this->sizes;
+			$this->conf['controlOrder'] = $this->sizes;
 		}
 		else {
-			$this->localconf['controlOrder'] = $configurationOrder;
+			$this->conf['controlOrder'] = $configurationOrder;
 		}
 
 // Loop on each control (smaller, reset and bigger)
 
-		foreach ($this->localconf['controlOrder'] as $aSize) {
-			if (!empty($this->localconf[$aSize])) $controlsScript .= 'document.write(efa_fontSize06.'.$aSize.'Link);';
+		foreach ($this->conf['controlOrder'] as $aSize) {
+			if (!empty($this->conf[$aSize])) $controlsScript .= 'document.write(efa_fontSize06.'.$aSize.'Link);';
 			$initializationScript .= $this->initializeControl($aSize);
 		}
 		if (!empty($controlsScript)) $content .= t3lib_div::wrapJS($controlsScript);
@@ -91,16 +90,16 @@ class tx_efafontsize_pi1 extends tslib_pibase {
 // and the instanciation of the Efa_Fontsize06 object
 
 		$fullInitializationScript = '';
-		$fullInitializationScript .= 'var efa_default = '.((empty($this->localconf['defaultFontSize'])) ? 100 : intval($this->localconf['defaultFontSize'])).";\n";
-		$fullInitializationScript .= 'var efa_increment = '.((empty($this->localconf['defaultFontSize'])) ? 10 : intval($this->localconf['fontSizeIncrement'])).";\n";
+		$fullInitializationScript .= 'var efa_default = '.((empty($this->conf['defaultFontSize'])) ? 100 : intval($this->conf['defaultFontSize'])).";\n";
+		$fullInitializationScript .= 'var efa_increment = '.((empty($this->conf['defaultFontSize'])) ? 10 : intval($this->conf['fontSizeIncrement'])).";\n";
 		$fullInitializationScript .= $initializationScript;
 		$fullInitializationScript .= 'var efa_fontSize06 = new Efa_Fontsize06(efa_increment,efa_bigger,efa_reset,efa_smaller,efa_default);'."\n";
 		$GLOBALS['TSFE']->additionalJavaScript[] = $fullInitializationScript;
 
 // Wrap the whole result, with baseWrap if defined, else with standard pi_wrapInBaseClass() call
 
-		if (isset($this->localconf['baseWrap.'])) {
-			return $this->cObj->stdWrap($content,$this->localconf['baseWrap.']);
+		if (isset($this->conf['baseWrap.'])) {
+			return $this->cObj->stdWrap($content,$this->conf['baseWrap.']);
 		}
 		else {
 			return $this->pi_wrapInBaseClass($content);
@@ -147,8 +146,8 @@ class tx_efafontsize_pi1 extends tslib_pibase {
 
 // Set values for each parameter according to the corresponding TS property
 
-		if (isset($this->localconf[$key.'.'])) {
-			$conf = $this->localconf[$key.'.'];
+		if (isset($this->conf[$key.'.'])) {
+			$conf = $this->conf[$key.'.'];
 			$this->cObj->data['controlKey'] = $key; // Add the current key to the available cObj data
 			if (isset($conf['beforeHTML.'])) {
 				$controlParameters[0] = trim(str_replace("\r\n",'',$this->cObj->cObjGetSingle($conf['beforeHTML'],$conf['beforeHTML.'])));
